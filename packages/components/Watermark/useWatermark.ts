@@ -151,11 +151,17 @@ function getCanvasData(ops: Required<DrawOptions>) {
 
     ctx.font = `${fontWeight} ${realFontSize}px ${fontFamily}`;
     const measureSize = measureTextSize(ctx, [...content], rotate);
+
     console.log(measureSize, ops, realFontSize);
+
     const width = ops.width || measureSize.width;
     const height = ops.height || measureSize.height;
 
     configCanvas(width, height);
+
+    ctx.fillStyle = color!;
+    ctx.font = `${fontWeight} ${realFontSize}px ${fontFamily}`;
+    ctx.textBaseline = "top";
 
     [...content].forEach((item, index) => {
       const { height: lineHeight, width: lineWidth } =

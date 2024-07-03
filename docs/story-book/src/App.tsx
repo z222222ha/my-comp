@@ -222,7 +222,13 @@ function App() {
         <div onClick={() => alert(1)}>copy</div>
       </CopyToClipboard>
       <div>------------------</div>
-      <Watermark content={["测试水印", "神说要有光"]} gap={[0, 0]}>
+      <Watermark
+        content={["测试水印", "神说要有光"]}
+        gap={[0, 0]}
+        font={{
+          color: "green",
+        }}
+      >
         <div style={{ height: 800 }}>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
