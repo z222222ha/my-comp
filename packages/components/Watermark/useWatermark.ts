@@ -202,6 +202,8 @@ export default function useWatermark(ops: DrawOptions) {
   const watermarkDiv = useRef<HTMLDivElement>();
   const container = mergedOptions.getContainer();
 
+  const mutationObserver = useRef<MutationObserver>();
+
   function drawWatermark() {
     if (!container) {
       return;
@@ -227,6 +229,40 @@ export default function useWatermark(ops: DrawOptions) {
         container.style.position = "relative";
       }
       watermarkDiv.current.setAttribute("style", wmStyle);
+
+      if (container) {
+        mutationObserver.current?.disconnect();
+
+        mutationObserver.current = new MutationObserver((mutations) => {
+          const isChanged = mutations.some((mutation) => {
+            let flag = false;
+            if (mutation.removedNodes.length) {
+              flag = Array.from(mutation.removedNodes).some(
+                (node) => node === watermarkDiv.current
+              );
+            }
+            if (
+              mutation.type === "attributes" &&
+              mutation.target === watermarkDiv.current
+            ) {
+              flag = true;
+            }
+            return flag;
+          });
+
+          if (isChanged) {
+            watermarkDiv.current?.parentNode?.removeChild(watermarkDiv.current);
+            watermarkDiv.current = undefined;
+            drawWatermark();
+          }
+        });
+
+        mutationObserver.current.observe(container, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
+      }
     });
   }
 
