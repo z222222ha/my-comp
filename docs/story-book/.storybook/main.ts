@@ -13,5 +13,11 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
+  async viteFinal(config) {
+    config.esbuild = {
+      drop: ["console", "debugger"],
+    };
+    return config;
+  },
 };
 export default config;
