@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Calendar,
   Icon,
@@ -8,6 +9,7 @@ import {
   MutateObserver,
   CopyToClipboard,
   Watermark,
+  LazyLoad,
 } from "zhh-components";
 import {
   useCookie,
@@ -19,6 +21,11 @@ import {
 import dayjs from "dayjs";
 import "./App.css";
 import { useEffect, useRef, useState } from "react";
+
+import img1 from "./assets/img1.png";
+import img2 from "./assets/img2.png";
+
+const LazyTest = React.lazy(() => import("./Test"));
 
 function App() {
   const HeartSvg = () => (
@@ -325,6 +332,30 @@ function App() {
       <div ref={hoverRef} style={{ width: "30px", backgroundColor: "red" }}>
         {isHover ? "in" : "out"}
       </div>
+      <div>------------------</div>
+      <div>
+        {new Array(20).fill(0).map(() => (
+          <p>xxxxxx</p>
+        ))}
+      </div>
+      <img src={img1} />
+      <LazyLoad
+        placeholder={<div>loading</div>}
+        onContentVisible={() => {
+          console.log("img visible");
+        }}
+      >
+        <img src={img2} />
+      </LazyLoad>
+      {/* <LazyTest></LazyTest> */}
+      <LazyLoad
+        placeholder={<div>loading</div>}
+        onContentVisible={() => {
+          console.log("component visible");
+        }}
+      >
+        <LazyTest />
+      </LazyLoad>
       <div>------------------</div>
     </div>
   );

@@ -5,6 +5,7 @@ import Portal from "./Portal";
 import MutateObserver from "./MutateObserver";
 import CopyToClipboard from "./CopyToClipboard";
 import Watermark from "./Watermark";
+import LazyLoad from "./LazyLoad";
 
 export {
   Calendar,
@@ -16,4 +17,5 @@ export {
   MutateObserver,
   CopyToClipboard,
   Watermark,
+  LazyLoad,
 };
