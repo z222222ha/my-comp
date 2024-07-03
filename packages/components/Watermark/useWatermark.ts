@@ -214,7 +214,7 @@ export default function useWatermark(ops: DrawOptions) {
 
       const wmStyle = `
       width: 100%;
-      height: 300px;
+      height: 100%;
       background-image:url(${base64Url});
       background-repeat: repeat;
       position:absolute;
