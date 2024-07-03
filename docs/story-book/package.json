@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o build",
+    "build-storybook": "storybook build -o build  NODE_ENV=production",
     "predeploy": "pnpm run build-storybook",
     "deploy": "gh-pages -d build"
   },

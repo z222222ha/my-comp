@@ -13,11 +13,17 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
-  async viteFinal(config) {
-    config.esbuild = {
-      drop: ["console", "debugger"],
-    };
+  async viteFinal(config, { configType }) {
+    if (configType === "PRODUCTION") {
+      config.esbuild = {
+        drop: ["console", "debugger"],
+      };
+    }
+    if (configType === "DEVELOPMENT") {
+      // Your development configuration goes here
+    }
     return config;
   },
 };
+
 export default config;
