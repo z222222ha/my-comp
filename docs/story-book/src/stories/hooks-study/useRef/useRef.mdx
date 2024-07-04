@@ -1,0 +1,169 @@
+import { Canvas, Meta, Markdown } from "@storybook/blocks";
+
+import * as UseRefStories from "./useRef.stories";
+
+<Meta of={UseRefStories} />
+
+# [useRef ](https://zh-hans.react.dev/reference/react/useRef#)
+
+`useRef` 能引用一个 **不需要渲染** 的值，修改 `ref.current` 并不会引起组件重新渲染：
+
+```js
+const ref = useRef(initialValue);
+```
+
+- 主要用法：使用 ref 引用一个值、通过 ref 操作 DOM、避免重复创建 ref 的内容
+
+- 参数：
+
+  - `initialValue`：`ref` 对象的 `current` 属性的初始值，`any` 类型，在首次渲染后被忽略，即在后续的渲染中，`useRef` 将返回相同的对象
+
+- 返回值：返回一个只有 `current` 属性的对象
+
+- 注意：
+
+  - 一个不用于渲染的数据使用 `ref`（存计时器 ID），用于渲染的话则使用 `state`
+  - 改变 `ref.current` 属性时，React 不会重新渲染组件（**setState** 会），ref 只是一个普通的 js 对象
+  - 可以在重新渲染之间 **存储信息**（普通对象存储的值在每次渲染都会重置）
+  - 除了初始化外不要在渲染期间写入或者读取 `ref.current`，否则会使组件行为变得不可预测；可以在事件处理函数或者 **Effect** 中读写 ref；如果不得不在渲染期间读写，应使用 **State**
+
+```jsx
+function MyComponent() {
+  // ...
+  // 🚩 不要在渲染期间写入 ref
+  myRef.current = 123;
+  // ...
+  // 🚩 不要在渲染期间读取 ref
+  return <h1>{myOtherRef.current}</h1>;
+}
+
+function MyComponent() {
+  // ...
+  useEffect(() => {
+    // ✅ 可以在 Effect 中读取和写入 ref
+    myRef.current = 123;
+  });
+  // ...
+  function handleClick() {
+    // ✅ 可以在事件处理程序中读取和写入 ref
+    doSomething(myOtherRef.current);
+  }
+  // ...
+}
+```
+
+## 引用一个不用于渲染的值
+
+<Canvas
+  of={UseRefStories.Example}
+  withToolbar={true}
+  sourceState="none"
+  additionalActions={[
+    {
+      title: "Open in GitHub",
+      onClick: () => {
+        window.open(
+          "https://github.com/storybookjs/storybook/blob/next/code/ui/blocks/src/examples/Button.stories.tsx",
+          "_blank"
+        );
+      },
+    },
+  ]}
+/>
+
+```jsx
+// 秒表
+const timer = useRef(null); // 引用计时器 id
+const [start, setStart] = useState(null);
+const [now, setNow] = useState(null);
+
+function handleStart() {
+  setNow(Date.now());
+  setStart(Date.now());
+
+  clearInterval(timer.current);
+  timer.current = setInterval(() => {
+    setNow(Date.now());
+  }, 10);
+}
+
+function handleStop() {
+  clearInterval(timer.current);
+}
+
+let secondsPassed = 0;
+if (start && now) {
+  secondsPassed = (now - start) / 1000;
+}
+
+return (
+  <>
+    <h1>Time passed: {secondsPassed.toFixed(3)}</h1>
+    <button onClick={handleStart}>start</button>
+    <button onClick={handleStop}>stop</button>
+  </>
+);
+```
+
+## [通过 ref 操作 DOM](https://zh-hans.react.dev/reference/react/useRef#manipulating-the-dom-with-a-ref)
+
+- 组件内可以通过 ref 直接操作
+- 也可以通过 `forwardRef` 将子组件内的 ref 转发至父组件
+
+```jsx
+// 聚焦输入框
+import { useRef } from "react";
+
+export default function Form() {
+  const inputRef = useRef(null);
+
+  function handleClick() {
+    inputRef.current.focus();
+  }
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={handleClick}>聚焦输入框</button>
+    </>
+  );
+}
+```
+
+## ref + forwardRef 暴露到父组件
+
+```jsx
+import { forwardRef, useRef } from "react";
+
+const MyInput = forwardRef((props, ref) => {
+  return <input {...props} ref={ref} />;
+});
+
+export default function Form() {
+  const inputRef = useRef(null);
+
+  function handleClick() {
+    inputRef.current.focus();
+  }
+
+  return (
+    <>
+      <MyInput ref={inputRef} />
+      <button onClick={handleClick}>聚焦输入框</button>
+    </>
+  );
+}
+```
+
+## [避免重复创建 ref](https://zh-hans.react.dev/reference/react/useRef#avoiding-recreating-the-ref-contents)
+
+通常情况下，在渲染过程中写入或读取 `ref.current` 是不允许的。然而，在这种情况下是可以的，因为结果总是一样的，而且只在初始化时执行，所以是完全可预测的
+
+```jsx
+// 初始化 Vedio 组件
+function Video() {
+  const playerRef = useRef(null);
+  if (playerRef.current === null) {
+    playerRef.current = new VideoPlayer();
+}
+```
