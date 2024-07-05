@@ -10,6 +10,7 @@ import {
   CopyToClipboard,
   Watermark,
   LazyLoad,
+  Message,
 } from "zhh-components";
 import {
   useCookie,
@@ -236,7 +237,7 @@ function App() {
           color: "green",
         }}
       >
-        <div style={{ height: 800 }}>
+        <div>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
             deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
@@ -338,14 +339,14 @@ function App() {
           <p>xxxxxx</p>
         ))}
       </div>
-      <img src={img1} />
+      <img src={img1} style={{ width: "100px" }} />
       <LazyLoad
         placeholder={<div>loading</div>}
         onContentVisible={() => {
           console.log("img visible");
         }}
       >
-        <img src={img2} />
+        <img src={img2} style={{ width: "100px" }} />
       </LazyLoad>
       {/* <LazyTest></LazyTest> */}
       <LazyLoad
@@ -356,6 +357,8 @@ function App() {
       >
         <LazyTest />
       </LazyLoad>
+      <div>------------------</div>
+      <Message></Message>
       <div>------------------</div>
     </div>
   );

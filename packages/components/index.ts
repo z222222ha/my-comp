@@ -6,6 +6,7 @@ import MutateObserver from "./MutateObserver";
 import CopyToClipboard from "./CopyToClipboard";
 import Watermark from "./Watermark";
 import LazyLoad from "./LazyLoad";
+import Message from "./Message";
 
 export {
   Calendar,
@@ -18,4 +19,5 @@ export {
   CopyToClipboard,
   Watermark,
   LazyLoad,
+  Message,
 };
