@@ -1,7 +1,7 @@
 import React, { useEffect, createRef } from "react";
 import useStore from "./useStore";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-// import Styles from "./index.module.scss";
+
 import "./msg.scss";
 
 export type Position = "top" | "bottom";
@@ -22,12 +22,12 @@ export default function Message() {
     setInterval(() => {
       add({
         content: Math.random().toString().slice(2, 8),
-        // position: Math.random() > 0.5 ? "top" : "bottom",
+        position: Math.random() > 0.5 ? "top" : "bottom",
       });
     }, 2000);
   }, []);
 
-  const groups = Object.keys(messageList);
+  const groups = Object.keys(messageList) as Position[];
 
   console.log(messageList, groups);
 
