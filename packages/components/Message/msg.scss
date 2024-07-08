@@ -1,0 +1,47 @@
+/* 定义进入动画的初始状态，元素首次出现时，透明度为0，且以1.1的比例放大 */
+.message-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+/* 定义进入动画的活动状态，元素在动画过程中逐渐变为完全不透明，并恢复到正常大小 */
+.message-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity,
+    transform 1s ease;
+}
+
+/* 定义退出动画的初始状态，元素在准备离开时，初始透明度为1 */
+.message-exit {
+  opacity: 1;
+}
+
+/* 定义退出动画的活动状态，元素在离开过程中逐渐变为透明 */
+.message-exit-active {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.message-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  &-top {
+    position: fixed;
+    top: 20px;
+  }
+  &-bottom {
+    bottom: 20px;
+    position: absolute;
+  }
+}
+
+.message-item {
+  width: 100px;
+  line-height: 30px;
+  border: 1px solid red;
+  margin: 20px;
+}

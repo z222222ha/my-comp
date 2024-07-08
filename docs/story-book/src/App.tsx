@@ -335,8 +335,8 @@ function App() {
       </div>
       <div>------------------</div>
       <div>
-        {new Array(20).fill(0).map(() => (
-          <p>xxxxxx</p>
+        {new Array(20).fill(0).map((_v, i) => (
+          <p key={i}>xxxxxx</p>
         ))}
       </div>
       <img src={img1} style={{ width: "100px" }} />
@@ -358,7 +358,9 @@ function App() {
         <LazyTest />
       </LazyLoad>
       <div>------------------</div>
-      <Message></Message>
+      <div>
+        <Message></Message>
+      </div>
       <div>------------------</div>
     </div>
   );
