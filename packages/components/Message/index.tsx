@@ -1,10 +1,17 @@
-import React, { useEffect, createRef, useMemo, forwardRef } from "react";
+import React, {
+  createRef,
+  useMemo,
+  forwardRef,
+  useImperativeHandle,
+  useContext,
+} from "react";
 import useStore from "./useStore";
 import useTimer from "./useTimer";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import "./msg.scss";
 import { createPortal } from "react-dom";
+import { ConfigContext } from "../ConfigProvider";
 
 export type Position = "top" | "bottom";
 
@@ -16,6 +23,13 @@ export interface MessageProps {
   id?: number;
   position?: Position;
   onClose?: (arg: number) => void;
+}
+
+export interface MessageRef {
+  add: (messageProps: MessageProps) => void;
+  remove: (id: number) => void;
+  update: (id: number, messageProps: MessageProps) => void;
+  clearAll: () => void;
 }
 
 const MessageItem = forwardRef(
@@ -40,21 +54,43 @@ const MessageItem = forwardRef(
   }
 );
 
-export default function Message() {
-  const { messageList, add, remove } = useStore("top");
+const Message = forwardRef((_props, ref) => {
+  const { messageList, add, remove, update, clearAll } = useStore("top");
 
-  useEffect(() => {
-    // setInterval(() => {
-    //   add({
-    //     content: Math.random().toString().slice(2, 8),
-    //     position: Math.random() > 0.5 ? "top" : "bottom",
-    //   });
-    // }, 2000);
-    add({
-      content: Math.random().toString().slice(2, 8),
-      position: Math.random() > 0.5 ? "top" : "bottom",
-    });
+  useImperativeHandle(ref, () => {
+    return {
+      add,
+      remove,
+      update,
+      clearAll,
+    };
   }, []);
+
+  const { messageRef, space } = useContext(ConfigContext);
+  console.log("messageRef context!!!!!", messageRef, space);
+
+  // if ("current" in ref!) {
+  //   ref.current = {
+  //     add,
+  //     remove,
+  //     update,
+  //     clearAll,
+  //   };
+  // }
+
+  // test
+  // useEffect(() => {
+  //   // setInterval(() => {
+  //   //   add({
+  //   //     content: Math.random().toString().slice(2, 8),
+  //   //     position: Math.random() > 0.5 ? "top" : "bottom",
+  //   //   });
+  //   // }, 2000);
+  //   add({
+  //     content: Math.random().toString().slice(2, 8),
+  //     position: Math.random() > 0.5 ? "top" : "bottom",
+  //   });
+  // }, []);
 
   const groups = Object.keys(messageList) as Position[];
 
@@ -93,4 +129,6 @@ export default function Message() {
   }, []);
 
   return createPortal(MessageWrapper, el);
-}
+});
+
+export default Message;

@@ -7,6 +7,8 @@ import CopyToClipboard from "./CopyToClipboard";
 import Watermark from "./Watermark";
 import LazyLoad from "./LazyLoad";
 import Message from "./Message";
+import useMessage from "./Message/useMessage";
+import ConfigProvider from "./ConfigProvider";
 
 export {
   Calendar,
@@ -20,4 +22,6 @@ export {
   Watermark,
   LazyLoad,
   Message,
+  useMessage,
+  ConfigProvider,
 };

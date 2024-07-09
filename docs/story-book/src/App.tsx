@@ -10,7 +10,8 @@ import {
   CopyToClipboard,
   Watermark,
   LazyLoad,
-  Message,
+  ConfigProvider,
+  useMessage,
 } from "zhh-components";
 import {
   useCookie,
@@ -27,6 +28,22 @@ import img1 from "./assets/img1.png";
 import img2 from "./assets/img2.png";
 
 const LazyTest = React.lazy(() => import("./Test"));
+
+// 需要使用子组件包裹后放入 Context Provider中，不然会导致无法拿到 context 值
+function MessageTest() {
+  const message = useMessage();
+  return (
+    <button
+      onClick={() => {
+        message?.add({
+          content: "请求成功",
+        });
+      }}
+    >
+      成功
+    </button>
+  );
+}
 
 function App() {
   const HeartSvg = () => (
@@ -147,7 +164,7 @@ function App() {
   const isHover = useHoverRef(hoverRef);
 
   return (
-    <div>
+    <ConfigProvider space={{ size: 100 }}>
       <Calendar
         value={dayjs("2024-6-18")}
         // renderCell={(date) => {
@@ -188,18 +205,18 @@ function App() {
         <div className="box"></div>
       </Space>
       <div>-----------------</div>
-      <Space.ConfigProvider space={{ size: 20 }}>
-        <Space direction="horizontal">
-          <div className="box"></div>
-          <div className="box"></div>
-          <div className="box"></div>
-        </Space>
-        <Space direction="vertical">
-          <div className="box"></div>
-          <div className="box"></div>
-          <div className="box"></div>
-        </Space>
-      </Space.ConfigProvider>
+      {/* <Space.ConfigProvider space={{ size: 20 }}> */}
+      <Space direction="horizontal">
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+      </Space>
+      <Space direction="vertical">
+        <div className="box"></div>
+        <div className="box"></div>
+        <div className="box"></div>
+      </Space>
+      {/* </Space.ConfigProvider> */}
 
       <Portal attach={document.body} ref={containerRef}>
         {PortalTest}
@@ -359,10 +376,10 @@ function App() {
       </LazyLoad>
       <div>------------------</div>
       <div>
-        <Message></Message>
+        <MessageTest></MessageTest>
       </div>
       <div>------------------</div>
-    </div>
+    </ConfigProvider>
   );
 }
 
