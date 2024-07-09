@@ -1,7 +1,8 @@
-import React, { Fragment, PropsWithChildren, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import cs from "classnames";
 import "./index.scss";
-import { ConfigContext, ConfigContextType } from "./ConfigProvider";
+// import { ConfigContext, ConfigContextType } from "./ConfigProvider";
+import { ConfigContext } from "../ConfigProvider";
 
 export type SizeType = "small" | "medium" | "large" | number | undefined;
 
@@ -42,15 +43,28 @@ export interface SpaceProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function Space(props: SpaceProps) {
   // 读取 context
   const { space } = useContext(ConfigContext);
+  // console.log("space context!!!!!!!", space);
 
-  const { style, className, direction, size = space?.size || "small", wrap, align, split, ...res } = props;
+  const {
+    style,
+    className,
+    direction,
+    size = space?.size || "small",
+    wrap,
+    align,
+    split,
+    ...res
+  } = props;
 
   // 给所有子节点包装一层div
   const childNodes = React.Children.toArray(props.children);
 
   const nodes = childNodes.map((child, index) => {
     // 如果 child上存在key属性，则使用key，否则使用index
-    const isHasKey = typeof child === "object" && child !== null && "key" in child ? child.key : null;
+    const isHasKey =
+      typeof child === "object" && child !== null && "key" in child
+        ? child.key
+        : null;
     const key = isHasKey || `space-item-${index}`;
     return (
       <Fragment key={key}>
@@ -76,7 +90,9 @@ export default function Space(props: SpaceProps) {
 
   function calcSize() {
     console.log("calc-size!");
-    return (Array.isArray(size) ? size : ([size, size] as [SizeType, SizeType])).map((item) => getSizeNumber(item));
+    return (
+      Array.isArray(size) ? size : ([size, size] as [SizeType, SizeType])
+    ).map((item) => getSizeNumber(item));
   }
 
   const [hSize, vSize] = calcSize();
@@ -91,10 +107,14 @@ export default function Space(props: SpaceProps) {
   );
 }
 
-// 封装 context 组件
-interface ConfigProviderProps extends PropsWithChildren<ConfigContextType> {}
+// // 封装 context 组件，已将 context 抽离为全局管理
+// interface ConfigProviderProps extends PropsWithChildren<ConfigContextType> {}
 
-Space.ConfigProvider = (props: ConfigProviderProps) => {
-  const { space, children } = props;
-  return <ConfigContext.Provider value={{ space }}>{children}</ConfigContext.Provider>;
-};
+// Space.ConfigProvider = (props: ConfigProviderProps) => {
+//   const { space, children } = props;
+//   return (
+//     <ConfigContext.Provider value={{ space }}>
+//       {children}
+//     </ConfigContext.Provider>
+//   );
+// };
