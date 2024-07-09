@@ -1,5 +1,6 @@
-import React, { useEffect, createRef, useMemo } from "react";
+import React, { useEffect, createRef, useMemo, forwardRef } from "react";
 import useStore from "./useStore";
+import useTimer from "./useTimer";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import "./msg.scss";
@@ -14,18 +15,45 @@ export interface MessageProps {
   duration?: number;
   id?: number;
   position?: Position;
+  onClose?: (arg: number) => void;
 }
 
+const MessageItem = forwardRef(
+  (item: MessageProps, ref: React.Ref<HTMLDivElement>) => {
+    const { onMouseEnter, onMouseLeave } = useTimer({
+      duration: item.duration,
+      id: item.id!,
+      remove: item.onClose!,
+    });
+
+    return (
+      <div
+        ref={ref}
+        key={item.id}
+        className="message-item"
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
+        {item.content}
+      </div>
+    );
+  }
+);
+
 export default function Message() {
-  const { messageList, add } = useStore("top");
+  const { messageList, add, remove } = useStore("top");
 
   useEffect(() => {
-    setInterval(() => {
-      add({
-        content: Math.random().toString().slice(2, 8),
-        position: Math.random() > 0.5 ? "top" : "bottom",
-      });
-    }, 2000);
+    // setInterval(() => {
+    //   add({
+    //     content: Math.random().toString().slice(2, 8),
+    //     position: Math.random() > 0.5 ? "top" : "bottom",
+    //   });
+    // }, 2000);
+    add({
+      content: Math.random().toString().slice(2, 8),
+      position: Math.random() > 0.5 ? "top" : "bottom",
+    });
   }, []);
 
   const groups = Object.keys(messageList) as Position[];
@@ -48,9 +76,7 @@ export default function Message() {
                 timeout={300}
                 classNames="message"
               >
-                <div ref={ref} key={item.id} className="message-item">
-                  {item.content}
-                </div>
+                <MessageItem ref={ref} {...item} onClose={remove} />
               </CSSTransition>
             );
           })}
