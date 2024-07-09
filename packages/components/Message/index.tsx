@@ -1,8 +1,9 @@
-import React, { useEffect, createRef } from "react";
+import React, { useEffect, createRef, useMemo } from "react";
 import useStore from "./useStore";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import "./msg.scss";
+import { createPortal } from "react-dom";
 
 export type Position = "top" | "bottom";
 
@@ -31,7 +32,7 @@ export default function Message() {
 
   console.log(messageList, groups);
 
-  return (
+  const MessageWrapper = (
     <div className="message-wrapper">
       {groups.map((direction) => (
         <TransitionGroup
@@ -57,4 +58,13 @@ export default function Message() {
       ))}
     </div>
   );
+
+  const el = useMemo(() => {
+    const el = document.createElement("div");
+    el.className = "message-container";
+    document.body.appendChild(el);
+    return el;
+  }, []);
+
+  return createPortal(MessageWrapper, el);
 }
