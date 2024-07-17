@@ -29,11 +29,42 @@ export default function Form(props: FormProps) {
   // submit 的时候就是调用 onFinish ,传入 values，再调用所有 validator 对值做校验
   // 如果有错误，就调用 onFinishFailed 回调
 
-  const onValueChange = () => {};
+  const onValueChange = (key: string, value: any) => {
+    console.log(key, value);
+    values[key] = value;
+  };
 
-  const handleValidateRegister = () => {};
+  const handleValidateRegister = (name: string, cb: () => void) => {
+    validatorMap.current.set(name, cb);
+  };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    console.log(values);
+
+    for (let [key, cb] of validatorMap.current) {
+      if (typeof cb === "function") {
+        errors.current[key] = cb();
+      }
+    }
+
+    console.log(errors.current);
+
+    const errorList = Object.keys(errors.current)
+      .map((key) => {
+        return errors.current[key];
+      })
+      .filter(Boolean);
+
+    console.log(errorList);
+
+    if (errorList.length) {
+      onFinishFailed?.(errors.current);
+    } else {
+      onFinish?.(values);
+    }
+  };
 
   return (
     <FormContext.Provider

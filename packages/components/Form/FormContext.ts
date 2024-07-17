@@ -4,7 +4,7 @@ export interface FormContextProps {
   values?: Record<string, any>;
   setValues?: (values: Record<string, any>) => void;
   onValueChange?: (key: string, value: any) => void;
-  validateRegister?: (name: string, validator: (value: any) => boolean) => void;
+  validateRegister?: (name: string, validator: () => boolean) => void;
 }
 
 export default createContext<FormContextProps>({});

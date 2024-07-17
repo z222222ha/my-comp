@@ -9,6 +9,7 @@ import LazyLoad from "./LazyLoad";
 import Message from "./Message";
 import useMessage from "./Message/useMessage";
 import ConfigProvider from "./ConfigProvider";
+import Form from "./Form/index";
 
 export {
   Calendar,
@@ -24,4 +25,5 @@ export {
   Message,
   useMessage,
   ConfigProvider,
+  Form,
 };

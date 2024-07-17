@@ -12,6 +12,8 @@ import {
   LazyLoad,
   ConfigProvider,
   useMessage,
+  Form,
+  Item,
 } from "zhh-components";
 import {
   useCookie,
@@ -162,6 +164,15 @@ function App() {
   // useHoverRef
   const hoverRef = useRef<HTMLDivElement>(null);
   const isHover = useHoverRef(hoverRef);
+
+  // form
+  const onFinish = (values: any) => {
+    console.log("Success:", values);
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
     <ConfigProvider space={{ size: 100 }}>
@@ -378,6 +389,32 @@ function App() {
       <div>
         <MessageTest></MessageTest>
       </div>
+      <div>------------------</div>
+      <Form onFinish={onFinish} onFinishFailed={onFinishFailed}>
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            { required: true, message: "请输入用户名!" },
+            { max: 6, message: "长度不能大于 6" },
+          ]}
+        >
+          <input />
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: "请输入密码!" }]}
+        >
+          <input />
+        </Form.Item>
+        <Form.Item name="remember" label="Remember">
+          <input type="checkbox" />
+        </Form.Item>
+        <Form.Item>
+          <button>test</button>
+        </Form.Item>
+      </Form>
       <div>------------------</div>
     </ConfigProvider>
   );
