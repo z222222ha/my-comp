@@ -15,13 +15,8 @@ import {
   Form,
   Item,
 } from "zhh-components";
-import {
-  useCookie,
-  useHover,
-  useScrolling,
-  useSize,
-  useHoverRef,
-} from "zhh-hooks";
+import { useCookie, useHover, useScrolling, useSize, useHoverRef } from "zhh-hooks";
+import Bg from "zhh-react-bg";
 import dayjs from "dayjs";
 import "./App.css";
 import { useEffect, useRef, useState } from "react";
@@ -107,9 +102,7 @@ function App() {
     </svg>
   );
 
-  const IconFont = createFromIconFont(
-    "//at.alicdn.com/t/font_3286126_wwyk59664s.js"
-  );
+  const IconFont = createFromIconFont("//at.alicdn.com/t/font_3286126_wwyk59664s.js");
 
   // portal
 
@@ -147,9 +140,7 @@ function App() {
   };
 
   // useHover
-  const element = (hovered: boolean) => (
-    <div>Hover me! {hovered && "Thanks"}</div>
-  );
+  const element = (hovered: boolean) => <div>Hover me! {hovered && "Thanks"}</div>;
 
   const [hoverable, hovered] = useHover(element);
 
@@ -182,11 +173,7 @@ function App() {
         //   return <div style={{ background: "yellowgreen" }}>{date.format("YYYY-MM-DD")}</div>;
         // }}
         renderCellContent={(date) => {
-          return (
-            <div style={{ background: "yellowgreen" }}>
-              {date.format("YYYY-MM-DD")}
-            </div>
-          );
+          return <div style={{ background: "yellowgreen" }}>{date.format("YYYY-MM-DD")}</div>;
         }}
         locale="en-US"
         onChange={(date) => {
@@ -200,15 +187,9 @@ function App() {
       <IconEmail style={{ color: "blue", fontSize: "50px" }} />
       <IconFont type="icon-xihuan" size="40px" />
       <IconFont type="icon-shezhi" fill="blue" spin />
-      <IconFont
-        type="icon-tongzhi"
-        style={{ color: "blue", fontSize: "50px" }}
-      />
+      <IconFont type="icon-tongzhi" style={{ color: "blue", fontSize: "50px" }} />
       <Icon component={PandaSvg} style={{ fontSize: "50px" }} />
-      <Icon
-        component={HeartSvg}
-        style={{ fontSize: "50px", color: "hotpink" }}
-      />
+      <Icon component={HeartSvg} style={{ fontSize: "50px", color: "hotpink" }} />
       <div>---------------</div>
       <Space align="center" wrap={true} size={"large"} className="container">
         <div className="box"></div>
@@ -267,46 +248,39 @@ function App() {
       >
         <div>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
-            deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
-            recusandae minus, eaque, harum exercitationem esse sapiente?
-            Eveniet, id provident!
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod deserunt quidem quas
+            in rem ipsam ut nesciunt asperiores dignissimos recusandae minus, eaque, harum
+            exercitationem esse sapiente? Eveniet, id provident!
           </p>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
-            deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
-            recusandae minus, eaque, harum exercitationem esse sapiente?
-            Eveniet, id provident!
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod deserunt quidem quas
+            in rem ipsam ut nesciunt asperiores dignissimos recusandae minus, eaque, harum
+            exercitationem esse sapiente? Eveniet, id provident!
           </p>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
-            deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
-            recusandae minus, eaque, harum exercitationem esse sapiente?
-            Eveniet, id provident!
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod deserunt quidem quas
+            in rem ipsam ut nesciunt asperiores dignissimos recusandae minus, eaque, harum
+            exercitationem esse sapiente? Eveniet, id provident!
           </p>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
-            deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
-            recusandae minus, eaque, harum exercitationem esse sapiente?
-            Eveniet, id provident!
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod deserunt quidem quas
+            in rem ipsam ut nesciunt asperiores dignissimos recusandae minus, eaque, harum
+            exercitationem esse sapiente? Eveniet, id provident!
           </p>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
-            deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
-            recusandae minus, eaque, harum exercitationem esse sapiente?
-            Eveniet, id provident!
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod deserunt quidem quas
+            in rem ipsam ut nesciunt asperiores dignissimos recusandae minus, eaque, harum
+            exercitationem esse sapiente? Eveniet, id provident!
           </p>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
-            deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
-            recusandae minus, eaque, harum exercitationem esse sapiente?
-            Eveniet, id provident!
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod deserunt quidem quas
+            in rem ipsam ut nesciunt asperiores dignissimos recusandae minus, eaque, harum
+            exercitationem esse sapiente? Eveniet, id provident!
           </p>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod
-            deserunt quidem quas in rem ipsam ut nesciunt asperiores dignissimos
-            recusandae minus, eaque, harum exercitationem esse sapiente?
-            Eveniet, id provident!
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos quod deserunt quidem quas
+            in rem ipsam ut nesciunt asperiores dignissimos recusandae minus, eaque, harum
+            exercitationem esse sapiente? Eveniet, id provident!
           </p>
         </div>
       </Watermark>
@@ -416,6 +390,7 @@ function App() {
         </Form.Item>
       </Form>
       <div>------------------</div>
+      <Bg></Bg>
     </ConfigProvider>
   );
 }
