@@ -1,0 +1,14 @@
+# 指定docker-compose解析的版本
+version: '3'
+services:
+  pure-nginx:
+    image: nginx:latest
+    # 指定容器名
+    container_name: pure-nginx
+    restart: always
+    # 指定持久卷，格式为 宿主机目录路径:容器目录路径
+    # CD Workflow会通过密钥登录该服务器，然后把生成的制品放在/data/www里，在此之后直接访问宿主机的ip即可访问到项目页面
+    volumes:
+      - /data/www:/usr/share/nginx/html
+    ports:
+      - 80:80
