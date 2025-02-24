@@ -49,7 +49,7 @@ jobs:
       - name: Building
         run: |
           pnpm build
-          zip -r assets ./dist/**
+          zip -r assets ./background/react-bg/dist/**
 
       # 基于当前commit进行版本发布(Create a release)，tag_name是v前缀加上package.json的version值
       - name: Create GitHub Release
