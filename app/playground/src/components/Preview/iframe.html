@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Preview</title>
+  </head>
+  <body>
+    <!-- 监听窗口错误事件，当发生错误时，向父窗口发送包含错误信息的消息 -->
+    <script>
+      window.addEventListener("error", (e) => {
+        window.parent.postMessage({ type: "ERROR", message: e.message });
+      });
+    </script>
+
+    <!-- 导入映射脚本，用于模块化开发 -->
+    <script type="importmap"></script>
+    <!-- 主应用脚本，使用ES6模块化语法 -->
+    <script type="module" id="appSrc"></script>
+    <!-- 应用根容器，用于渲染React或其他前端框架的内容 -->
+    <div id="root"></div>
+  </body>
+</html>

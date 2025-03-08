@@ -19,7 +19,7 @@
     "react-dom": "^18.3.1",
     "zhh-components": "workspace:*",
     "zhh-hooks": "workspace:*",
-    "zhh-react-bg": "workspace:*"
+    "zhh-react-playground": "workspace:*"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "1.6.0",

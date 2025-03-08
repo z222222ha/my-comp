@@ -1,0 +1,90 @@
+.tabs {
+  height: 41px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  // light and dark
+  background-color: var(--bg);
+  color: var(--text);
+
+  // scrollbar
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    // background-color: #ddd;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    &:hover {
+      background-color: #aaa;
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    padding-bottom: 3px; // 为了给 scroll 预留位置
+
+    // color: #444;
+    // background-color: #fff;
+
+    .item {
+      display: flex;
+      align-items: center;
+      height: 38px;
+      box-sizing: border-box;
+      border-bottom: 3px solid transparent;
+
+      padding-inline: 10px;
+      cursor: pointer;
+
+      user-select: none;
+
+      &.active {
+        color: skyblue;
+        border-bottom: 3px solid skyblue;
+        // background-color: #ddd;
+      }
+
+      // &:hover {
+      //   background-color: #ddd;
+      // }
+
+      .input {
+        width: 90px;
+        outline: none;
+        border-radius: 4px;
+      }
+
+      .name {
+        min-width: 60px;
+        max-width: 100px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .close {
+        // margin-inline-start: auto;
+      }
+
+      .name + .close {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .add {
+    cursor: pointer;
+    margin-bottom: 3px;
+    position: sticky;
+    right: 0px;
+    background-color: var(--bg);
+    border-inline: 5px var(--bg) solid;
+  }
+}

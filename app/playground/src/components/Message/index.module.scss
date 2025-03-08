@@ -1,0 +1,51 @@
+.ct {
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+
+  border: 2px solid black;
+  border-radius: 6px;
+  border-color: var(--color);
+
+  color: var(--color);
+  background-color: var(--bg-color);
+
+  &.error {
+    --color: #f56c6c;
+    --bg-color: #fef0f0;
+  }
+
+  &.warn {
+    --color: #e6a23c;
+    --bg-color: #fdf6ec;
+  }
+
+  pre {
+    padding: 12px 20px;
+    overflow: auto;
+    white-space: break-spaces;
+  }
+
+  .close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+
+    width: 18px;
+    height: 18px;
+    font-size: 9px;
+
+    line-height: 18px;
+    text-align: center;
+
+    padding: 0;
+    border-radius: 50%;
+
+    border: none;
+    cursor: pointer;
+
+    background-color: var(--color);
+    color: var(--bg-color);
+  }
+}

@@ -10,12 +10,21 @@
     "docs:build": "pnpm run -C docs/story-book build-storybook",
     "docs:deploy": "pnpm run -C docs/story-book deploy",
     "lint": "pnpm run -C background/react-bg lint",
-    "build": "pnpm run -C background/react-bg build"
+    "build": "pnpm run -C background/react-bg build",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "volta": {
     "node": "20.15.0"
+  },
+  "devDependencies": {
+    "cz-git": "^1.11.1"
   }
 }
