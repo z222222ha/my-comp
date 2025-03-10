@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react'
 
 export default function Playground() {
-  const [headerHeight, setHeaderHeight] = useState(0)
-
+  // 进入该页面后，将滚动条向下滚动一个 header 高度的距离
   useEffect(() => {
-    // Get header height after component mounts
-    // const height = document.querySelector('header')?.offsetHeight || 0
-    // setHeaderHeight(height)
+    const header = document.querySelector('header')
+    if (header) {
+      window.scrollTo(0, header.offsetHeight)
+    }
   }, [])
 
   return (
