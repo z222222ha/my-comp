@@ -113,6 +113,15 @@ importers:
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
+      zhh-components:
+        specifier: workspace:*
+        version: link:../../packages/components
+      zhh-hooks:
+        specifier: workspace:*
+        version: link:../../packages/hooks
+      zhh-react-playground:
+        specifier: workspace:*
+        version: link:../playground
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.2.0

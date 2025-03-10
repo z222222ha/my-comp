@@ -10,14 +10,15 @@ import { useContext } from 'react'
 
 export default function ReactPlayground() {
   const { theme } = useContext(PlaygroundContext)
+
   return (
     <div
       className={Styles[theme]}
-      style={{ height: 'calc(100vh - var(--header-height))' }}
+      style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}
     >
-      <Header />
+      {<Header />}
       {/* defaultSizes：左右面板的比例  */}
-      <div style={{ marginTop: 'var(--header-height)', height: '100%' }}>
+      <div style={{ flex: 1 }}>
         <Allotment defaultSizes={[1, 1]}>
           <Allotment.Pane minSize={500}>
             <CodeEditor />
