@@ -1,0 +1,10 @@
+<svg width="50" height="50" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景圆形 -->
+    <circle cx="100" cy="100" r="80" fill="#1E1E1E" />
+    
+    <!-- "张"字的简约线条设计 -->
+    <path d="M60 80 H140 M60 120 H140 M100 50 V150" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" />
+    
+    <!-- 添加一个现代感的切割效果 -->
+    <path d="M70 100 L130 100" stroke="#FF5733" stroke-width="6" stroke-linecap="round" />
+</svg>

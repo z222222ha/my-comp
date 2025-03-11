@@ -14,7 +14,7 @@ export default function ReactPlayground() {
   return (
     <div
       className={Styles[theme]}
-      style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}
+      style={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#fff' }}
     >
       {<Header />}
       {/* defaultSizes：左右面板的比例  */}
