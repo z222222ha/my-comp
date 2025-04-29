@@ -12,6 +12,7 @@ export default function Playground() {
 
   return (
     <iframe
+      title="playground"
       id="pg"
       src="http://localhost:5173/"
       sandbox="allow-scripts allow-same-origin"
@@ -26,6 +27,6 @@ export default function Playground() {
         position: 'absolute',
         left: 0,
       }}
-    ></iframe>
+    />
   )
 }

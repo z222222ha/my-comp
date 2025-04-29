@@ -33,6 +33,7 @@ const Header = () => {
         <div className="no-scrollbar hidden max-w-40 items-center gap-x-4 overflow-x-auto sm:flex md:max-w-72 lg:max-w-96">
           {headerNavLinks
             .filter((link) => link.href !== '/')
+            .filter((link) => link.href !== '/about')
             .map((link) => (
               <Link
                 key={link.title}
