@@ -1,29 +1,14 @@
-import Calendar from "./Calendar";
-import { Icon, createIcon, createFromIconFont } from "./Icon";
-import Space from "./Space";
-import Portal from "./Portal";
-import MutateObserver from "./MutateObserver";
-import CopyToClipboard from "./CopyToClipboard";
-import Watermark from "./Watermark";
-import LazyLoad from "./LazyLoad";
-import Message from "./Message";
-import useMessage from "./Message/useMessage";
-import ConfigProvider from "./ConfigProvider";
-import Form from "./Form/index";
+import Calendar from './src/Calendar'
+import { Icon, createIcon, createFromIconFont } from './src/Icon'
+import Space from './src/Space'
+import Portal from './src/Portal'
+import MutateObserver from './src/MutateObserver'
+import CopyToClipboard from './src/CopyToClipboard'
+import Watermark from './src/Watermark'
+import LazyLoad from './src/LazyLoad'
+import Message from './src/Message'
+import useMessage from './src/Message/useMessage'
+import ConfigProvider from './src/ConfigProvider'
+import Form from './src/Form/index'
 
-export {
-  Calendar,
-  Icon,
-  createIcon,
-  createFromIconFont,
-  Space,
-  Portal,
-  MutateObserver,
-  CopyToClipboard,
-  Watermark,
-  LazyLoad,
-  Message,
-  useMessage,
-  ConfigProvider,
-  Form,
-};
+export { Calendar, Icon, createIcon, createFromIconFont, Space, Portal, MutateObserver, CopyToClipboard, Watermark, LazyLoad, Message, useMessage, ConfigProvider, Form }
