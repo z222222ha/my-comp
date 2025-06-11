@@ -1,7 +1,7 @@
 {
   "name": "zhh-components",
   "private": false,
-  "version": "0.0.0",
+  "version": "0.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,6 @@
     "rollup": "rollup -c"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.19",
     "async-validator": "^4.2.5",
     "classnames": "^2.5.1",
     "copy-to-clipboard": "^3.3.3",
@@ -44,11 +43,15 @@
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/cjs.js",
   "module": "dist/esm.js",
   "unpkg": "dist/umd.js",
   "files": [
     "dist",
-    "package.json"
+    "package.json",
+    "README.md"
   ]
 }
