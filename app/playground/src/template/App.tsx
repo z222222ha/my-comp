@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import { Button } from '@guang-comp/react-comp-lib'
+import { Button, Calendar } from '@2haha/comp'
+import dayjs from 'dayjs'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,19 @@ function App() {
       >
         按钮二
       </Button>
+      <Calendar
+        value={dayjs('2024-6-18')}
+        // renderCell={(date) => {
+        //   return <div style={{ background: "yellowgreen" }}>{date.format("YYYY-MM-DD")}</div>;
+        // }}
+        renderCellContent={(date) => {
+          return <div style={{ background: 'yellowgreen' }}>{date.format('YYYY-MM-DD')}</div>
+        }}
+        locale="en-US"
+        onChange={(date) => {
+          console.log('click:', date.format('YYYY-MM-DD'))
+        }}
+      />
     </>
   )
 }

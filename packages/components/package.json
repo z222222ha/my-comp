@@ -1,7 +1,7 @@
 {
   "name": "zhh-components",
   "private": false,
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -49,6 +49,7 @@
   "main": "dist/cjs.js",
   "module": "dist/esm.js",
   "unpkg": "dist/umd.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "package.json",
