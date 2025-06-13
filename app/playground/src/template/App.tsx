@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Button, Calendar } from '@2haha/comp'
+import { Button, Calendar } from 'zhh-components'
 import dayjs from 'dayjs'
 
 function App() {

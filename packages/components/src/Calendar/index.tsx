@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import dayjs, { Dayjs } from 'dayjs'
-import './index.scss'
+// import './index.scss'
+import Styles from './index.module.scss'
 import cs from 'classnames'
 
 import MonthCalendar from './MonthCalendar'
@@ -27,7 +28,7 @@ export interface CalendarProps {
 export default function Calendar(props: CalendarProps) {
   const { style, className, locale, value, onChange } = props
 
-  const classnames = cs(className, 'calendar')
+  const classnames = cs(className, Styles['calendar'])
 
   const [curValue, setCurValue] = useState(value)
 

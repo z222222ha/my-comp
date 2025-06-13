@@ -3,6 +3,7 @@
     "react": "https://esm.sh/react@18.3.1",
     "react-dom": "https://esm.sh/react-dom@18.3.1",
     "@2haha/comp": "https://esm.sh/@2haha/comp@1.0.5",
-    "dayjs": "https://esm.sh/dayjs@1.11.13"
+    "dayjs": "https://esm.sh/dayjs@1.11.13",
+    "zhh-components": "https://esm.sh/zhh-components@0.0.30"
   }
 }
